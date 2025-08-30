@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.*;
 
 @RestController
@@ -40,7 +41,7 @@ public class MensajeController {
         Optional<UsuarioDTO> usuarioDTO = usuarioService.obtenerPorId(usuarioId);
         String nombre = usuarioDTO.map(UsuarioDTO::getNombre).orElse("desconocido");
         Integer edad = usuarioDTO.map(UsuarioDTO::getEdad).orElse(0);
-        LocalDate hoy = LocalDate.now();
+        LocalDate hoy = LocalDate.now(ZoneId.of("America/Costa_Rica"));
         // Si tu método aún se llama porUsarioYFecha, ajusta esta línea:
         Optional<RegistroDiarioDTO> regOpt = registroDiarioService.porUsuarioYFecha(usuarioId, hoy);
 
